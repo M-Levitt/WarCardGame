@@ -6,4 +6,8 @@
     <string name="rules_2">Each turn both players play a card faced up and the player with the highest rank card takes both cards
         and put them at the bottom of their stack.</string>
     <string name="rules_3">If the cards are the same rank, both players play one card faced down and another faced up. Again the player with the higher ranked card takes all of the played cards.</string>
+    <string name="rules_4">The game is won by the player that has every card.</string>
+    <string name="rules"><u>Rules</u></string>
+    <string name="ranks"><u>Ranks</u></string>
+    <string name="ranks_image_desc">Ranking of cards.</string>
 </resources>
