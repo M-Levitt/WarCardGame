@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     android:background="#4CAF50">
 
+    <Button
+        android:id="@+id/mainMenuButton"
+        android:layout_width="149dp"
+        android:layout_height="71dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="launchMain"
+        android:text="@string/button_main_menu"
+        android:textColor="#350A0A"
+        android:textSize="18sp"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.759"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.933" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="102dp"

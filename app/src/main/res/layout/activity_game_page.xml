@@ -19,18 +19,38 @@
     <ImageView
         android:id='@+id/player_deck'
         android:contentDescription="Player's deck"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_margin="5dp"
         android:src="@drawable/red_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/player_card"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_margin="120dp"
+        android:contentDescription="Player's card"
+        android:src="@drawable/red_back"
+        app:layout_constraintBottom_toBottomOf="@+id/player_deck"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/opponent_card"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_margin="120dp"
+        android:contentDescription="Opponent's card"
+        android:src="@drawable/red_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/opponent_deck" />
+
+    <ImageView
         android:id='@+id/opponent_deck'
         android:contentDescription="Opponent's deck"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_margin="5dp"
         android:src="@drawable/red_back"
         app:layout_constraintEnd_toEndOf="parent"
