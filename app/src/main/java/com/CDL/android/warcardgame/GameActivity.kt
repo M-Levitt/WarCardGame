@@ -96,6 +96,11 @@ val spades_ace = 414
 class GameActivity : AppCompatActivity() {
 
     var cards = ArrayList<Int>()
+    var cards_for_player = ArrayList<Int>()
+    var cards_for_opponent = ArrayList<Int>()
+    var half_of_a_full_deck = 0 // this should be 26 after the cards are added
+    var player_deck_counter = 0
+    var opponent_deck_counter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -169,13 +174,40 @@ class GameActivity : AppCompatActivity() {
 
         cards.shuffle()
 
+        half_of_a_full_deck = cards.size / 2
+        for (i in 0..(cards.size - 1)) {
+            // divide half the 52 cards for the player closer to the bottom
+            if (i < half_of_a_full_deck) {
+                cards_for_player.add(cards.get(i))
+            }
+            // divide the other half of the 52 cards for the player closer to the top
+            else if (i >= half_of_a_full_deck) {
+                cards_for_opponent.add(cards.get(i))
+            }
+        }
+
         val cardText: TextView = findViewById(R.id.card_text)
         player_deck.setOnClickListener {
-            cards.shuffle()
-            var current_card = cards.get(0)
+            // cards.shuffle()
+            if (player_deck_counter == cards_for_player.size) {
+                player_deck_counter = 0
+            }
+            if (opponent_deck_counter == cards_for_opponent.size) {
+                opponent_deck_counter = 0
+            }
+            var current_player_card = cards_for_player.get(player_deck_counter)
+            var current_opponent_card = cards_for_opponent.get(opponent_deck_counter)
+            player_deck_counter += 1
+            opponent_deck_counter += 1
             player_card.isVisible = true
-            showCard(current_card, player_card)
-            cardText.setText(current_card.toString())
+            opponent_card.isVisible = true
+            showCard(current_player_card, player_card)
+            showCard(current_opponent_card, opponent_card)
+            val string_card = current_player_card.toString()
+            // exclude the first value (suit value) and include just the final 2 digits
+            // or the value of the card
+            val current_card_value = string_card.substring(1, string_card.length)
+            cardText.setText(player_deck_counter.toString())
         }
 
     }
