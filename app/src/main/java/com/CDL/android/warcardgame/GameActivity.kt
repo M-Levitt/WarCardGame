@@ -203,13 +203,36 @@ class GameActivity : AppCompatActivity() {
             opponent_card.isVisible = true
             showCard(current_player_card, player_card)
             showCard(current_opponent_card, opponent_card)
-            val string_card = current_player_card.toString()
-            // exclude the first value (suit value) and include just the final 2 digits
-            // or the value of the card
-            val current_card_value = string_card.substring(1, string_card.length)
-            cardText.setText(player_deck_counter.toString())
+            var battle = cardOutcome(current_player_card, current_opponent_card)
+            cardText.setText(battle.toString())
         }
 
+    }
+
+    fun cardOutcome(playerCard: Int, opponentCard: Int): Int {
+        val startIndex = 1
+        val player_string_card = playerCard.toString()
+        val opponent_string_card = opponentCard.toString()
+
+        // exclude the first value (suit value) and include just the final 2 digits
+        // or the value of the card
+        val player_card_value = player_string_card.substring(startIndex, player_string_card.length)
+        val opponent_card_value = opponent_string_card.substring(startIndex, opponent_string_card.length)
+
+        val int_player_card_value = player_card_value.toInt()
+        val int_opponent_card_value = opponent_card_value.toInt()
+
+        if (int_player_card_value > int_opponent_card_value) {
+            return 1 // indicate player (deck closer to bottom of screen) won the battle
+        }
+        else if (int_player_card_value < int_opponent_card_value) {
+            return -1 // indicate player (deck closer to bottom of screen) lost the battle
+        }
+
+        else if (int_player_card_value == int_opponent_card_value) {
+            return 0 // start a WAR
+        }
+        return -10 // indicate something went wrong, this should not be treturned
     }
 
     fun showCard(card: Int, cardImage: ImageView) {
