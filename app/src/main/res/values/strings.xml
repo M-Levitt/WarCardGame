@@ -3,6 +3,12 @@
     <string name="button_play">Play</string>
     <string name="button_how_to">How To Play</string>
     <string name="button_main_menu">Main Menu</string>
+    <string name="player_deck">Player\'s deck</string>
+    <string name="player_pile">Player\'s won pile of cards</string>
+    <string name='player_card'>Player\'s card drawn from their deck</string>
+    <string name="opponent_deck">Opponent\'s deck</string>
+    <string name="opponent_pile">Opponent\'s won pile of cards</string>
+    <string name='opponent_card'>Opponent\'s card drawn from their deck</string>
     <string name="rules_1">At the start of the game each player will be dealt half a deck(26 cards) faced down.</string>
     <string name="rules_2">Each turn both players play a card faced up and the player with the highest rank card takes both cards
         and put them at the bottom of their stack.</string>
