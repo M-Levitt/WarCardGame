@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     var player1 = 0
     var player2 = 0
 
+    var size = 26;
+
     var cardDeck = intArrayOf(
             R.drawable.hearts_10,
             R.drawable.hearts_9,
