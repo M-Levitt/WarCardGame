@@ -232,7 +232,7 @@ class GameActivity : AppCompatActivity() {
         else if (int_player_card_value == int_opponent_card_value) {
             return 0 // start a WAR
         }
-        return -10 // indicate something went wrong, this should not be treturned
+        return -10 // indicate something went wrong, this should not be returned
     }
 
     fun showCard(card: Int, cardImage: ImageView) {
