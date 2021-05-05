@@ -104,12 +104,10 @@ class GameActivity : AppCompatActivity() {
     var opponent_pile = ArrayList<Int>()
     var WAR_pile = ArrayList<Int>()
     var half_of_a_full_deck = 0 // this should be 26 after the cards are added
-    var player_deck_counter = 0
-    var opponent_deck_counter = 0
     var WAR_counter = -1
-    var WAR_player_counter = 0
-    var WAR_opponent_counter = 0
     var war_ocurred = false
+    var player_game_over = false
+    var opponent_game_over = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,61 +138,61 @@ class GameActivity : AppCompatActivity() {
         opponent_war_card_4.isVisible = false
 
 
-        // add cards
-        // clubs
-//        cards.add(clubs_2)
-//        cards.add(clubs_3)
-//        cards.add(clubs_4)
-//        cards.add(clubs_5)
-//        cards.add(clubs_6)
-//        cards.add(clubs_7)
-//        cards.add(clubs_8)
-//        cards.add(clubs_9)
-//        cards.add(clubs_10)
-//        cards.add(clubs_jack)
-//        cards.add(clubs_queen)
-//        cards.add(clubs_king)
-//        cards.add(clubs_ace)
-//        // diamonds
-//        cards.add(diamonds_2)
-//        cards.add(diamonds_3)
-//        cards.add(diamonds_4)
-//        cards.add(diamonds_5)
-//        cards.add(diamonds_6)
-//        cards.add(diamonds_7)
-//        cards.add(diamonds_8)
-//        cards.add(diamonds_9)
-//        cards.add(diamonds_10)
-//        cards.add(diamonds_jack)
-//        cards.add(diamonds_queen)
-//        cards.add(diamonds_king)
-//        cards.add(diamonds_ace)
-//        // hearts
-//        cards.add(hearts_2)
-//        cards.add(hearts_3)
-//        cards.add(hearts_4)
-//        cards.add(hearts_5)
-//        cards.add(hearts_6)
-//        cards.add(hearts_7)
-//        cards.add(hearts_8)
-//        cards.add(hearts_9)
-//        cards.add(hearts_10)
-//        cards.add(hearts_jack)
-//        cards.add(hearts_queen)
-//        cards.add(hearts_king)
-//        cards.add(hearts_ace)
-////        // spades
-//        cards.add(spades_2)
-//        cards.add(spades_3)
-//        cards.add(spades_4)
-//        cards.add(spades_5)
-//        cards.add(spades_6)
-//        cards.add(spades_7)
-//        cards.add(spades_8)
-//        cards.add(spades_9)
-//        cards.add(spades_10)
-//        cards.add(spades_jack)
-//        cards.add(spades_queen)
+//         add cards
+//         clubs
+        cards.add(clubs_2)
+        cards.add(clubs_3)
+        cards.add(clubs_4)
+        cards.add(clubs_5)
+        cards.add(clubs_6)
+        cards.add(clubs_7)
+        cards.add(clubs_8)
+        cards.add(clubs_9)
+        cards.add(clubs_10)
+        cards.add(clubs_jack)
+        cards.add(clubs_queen)
+        cards.add(clubs_king)
+        cards.add(clubs_ace)
+        // diamonds
+        cards.add(diamonds_2)
+        cards.add(diamonds_3)
+        cards.add(diamonds_4)
+        cards.add(diamonds_5)
+        cards.add(diamonds_6)
+        cards.add(diamonds_7)
+        cards.add(diamonds_8)
+        cards.add(diamonds_9)
+        cards.add(diamonds_10)
+        cards.add(diamonds_jack)
+        cards.add(diamonds_queen)
+        cards.add(diamonds_king)
+        cards.add(diamonds_ace)
+        // hearts
+        cards.add(hearts_2)
+        cards.add(hearts_3)
+        cards.add(hearts_4)
+        cards.add(hearts_5)
+        cards.add(hearts_6)
+        cards.add(hearts_7)
+        cards.add(hearts_8)
+        cards.add(hearts_9)
+        cards.add(hearts_10)
+        cards.add(hearts_jack)
+        cards.add(hearts_queen)
+        cards.add(hearts_king)
+        cards.add(hearts_ace)
+//        // spades
+        cards.add(spades_2)
+        cards.add(spades_3)
+        cards.add(spades_4)
+        cards.add(spades_5)
+        cards.add(spades_6)
+        cards.add(spades_7)
+        cards.add(spades_8)
+        cards.add(spades_9)
+        cards.add(spades_10)
+        cards.add(spades_jack)
+        cards.add(spades_queen)
         cards.add(spades_king)
         cards.add(spades_ace)
 
@@ -215,7 +213,7 @@ class GameActivity : AppCompatActivity() {
         val cardText: TextView = findViewById(R.id.card_text)
 
         player_deck.setOnClickListener {
-            if (cards_for_player.size == 0) {
+            if (player_game_over == true) {
                 Toast.makeText(this, "You lose", Toast.LENGTH_SHORT).show()
                 // intent of the how to play activity
                 val main_intent = Intent(this, MainActivity::class.java)
@@ -223,7 +221,7 @@ class GameActivity : AppCompatActivity() {
                 startActivity(main_intent)
             }
 
-            if (cards_for_opponent.size == 0) {
+            else if (opponent_game_over == true) {
                 Toast.makeText(this, "You win", Toast.LENGTH_SHORT).show()
                 // intent of the how to play activity
                 val main_intent = Intent(this, MainActivity::class.java)
@@ -231,177 +229,156 @@ class GameActivity : AppCompatActivity() {
                 startActivity(main_intent)
             }
 
-            if (cards_for_player.size == 0) {
-                cards_for_player.addAll(player_pile)
-                player_pile.clear()
-                player_deck_counter = 0
-            }
-            if (cards_for_opponent.size == 0) {
-                cards_for_opponent.addAll(opponent_pile)
-                opponent_pile.clear()
-                opponent_deck_counter = 0
-            }
-            if (player_deck_counter == cards_for_player.size) {
-                player_deck_counter = 0
-            }
-            if (opponent_deck_counter == cards_for_opponent.size) {
-                opponent_deck_counter = 0
-            }
-            var current_player_card = cards_for_player.get(0)
-            var current_opponent_card = cards_for_opponent.get(0)
-            // player_deck_counter += 1
-            // opponent_deck_counter += 1
-            player_card.isVisible = true
-            opponent_card.isVisible = true
-            // showCard(current_player_card, player_card)
-            // showCard(current_opponent_card, opponent_card)
-            cardText.setText(cards_for_player.size.toString())
-            var battle = cardOutcome(current_player_card, current_opponent_card)
-            if (battle == 0) {
-                war_ocurred = true
-            }
-
-            else if (battle == -1 || battle == 1) {
-                if (war_ocurred == true) {
-                    // nothing happens
-                }
-                else if (war_ocurred == false) {
-                    showCard(current_player_card, player_card)
-                    showCard(current_opponent_card, opponent_card)
-                    if (battle == -1) {
-                        opponent_pile.add(current_player_card)
-                        opponent_pile.add(current_opponent_card)
-                        cards_for_player.removeAt(0)
-                        cards_for_opponent.removeAt(0)
-                    }
-
-                    else if (battle == 1) {
-                        player_pile.add(current_player_card)
-                        player_pile.add(current_opponent_card)
-                        cards_for_player.removeAt(0)
-                        cards_for_opponent.removeAt(0)
-                    }
-                }
-            }
-            if (war_ocurred == true) {
-                WAR_player_counter = player_deck_counter
-                WAR_opponent_counter = opponent_deck_counter
-
-                if (WAR_counter == -1) {
-                    WAR_counter += 1
-                    showCard(current_player_card, player_card)
-                    showCard(current_opponent_card, opponent_card)
-                    WAR_pile.add(current_player_card)
-                    WAR_pile.add(current_opponent_card)
-                    cards_for_player.removeAt(0)
-                    cards_for_opponent.removeAt(0)
-
-                }
-
-                else if (WAR_counter == 0) {
-                    player_war_card_1.isVisible = true
-                    opponent_war_card_1.isVisible = true
-                    showCard(current_player_card, player_war_card_1)
-                    showCard(current_opponent_card, opponent_war_card_1)
-                    player_war_card_1.bringToFront()
-                    opponent_war_card_1.bringToFront()
-                    WAR_counter += 1
-                    WAR_pile.add(current_player_card)
-                    WAR_pile.add(current_opponent_card)
-                    cards_for_player.removeAt(0)
-                    cards_for_opponent.removeAt(0)
-                }
-
-                else if (WAR_counter == 1) {
-                    player_war_card_2.isVisible = true
-                    opponent_war_card_2.isVisible = true
-                    showCard(current_player_card, player_war_card_2)
-                    showCard(current_opponent_card, opponent_war_card_2)
-                    player_war_card_2.bringToFront()
-                    opponent_war_card_2.bringToFront()
-                    WAR_counter += 1
-                    WAR_pile.add(current_player_card)
-                    WAR_pile.add(current_opponent_card)
-                    cards_for_player.removeAt(0)
-                    cards_for_opponent.removeAt(0)
-                }
-
-                else if (WAR_counter == 2) {
-                    player_war_card_3.isVisible = true
-                    opponent_war_card_3.isVisible = true
-                    showCard(current_player_card, player_war_card_3)
-                    showCard(current_opponent_card, opponent_war_card_3)
-                    player_war_card_3.bringToFront()
-                    opponent_war_card_3.bringToFront()
-                    WAR_counter += 1
-                    WAR_pile.add(current_player_card)
-                    WAR_pile.add(current_opponent_card)
-                    cards_for_player.removeAt(0)
-                    cards_for_opponent.removeAt(0)
-                }
-
-                else if (WAR_counter == 3) {
-                    player_war_card_4.isVisible = true
-                    opponent_war_card_4.isVisible = true
-                    player_war_card_4.bringToFront()
-                    opponent_war_card_4.bringToFront()
-                    showCard(current_player_card, player_war_card_4)
-                    showCard(current_opponent_card, opponent_war_card_4)
-                    WAR_counter += 1
-                    WAR_pile.add(current_player_card)
-                    WAR_pile.add(current_opponent_card)
-                    cards_for_player.removeAt(0)
-                    cards_for_opponent.removeAt(0)
-                }
-                else if (WAR_counter == 4) {
-                    if (battle == 0) {
-                        WAR_counter = -1
-                        war_ocurred = true
-                        showCard(current_player_card, player_card)
-                        showCard(current_opponent_card, opponent_card)
-                    }
-                    else {
-                        showCard(current_player_card, player_card)
-                        showCard(current_opponent_card, opponent_card)
-                        player_war_card_1.isVisible = false
-                        player_war_card_2.isVisible = false
-                        player_war_card_3.isVisible = false
-                        player_war_card_4.isVisible = false
-
-                        opponent_war_card_1.isVisible = false
-                        opponent_war_card_2.isVisible = false
-                        opponent_war_card_3.isVisible = false
-                        opponent_war_card_4.isVisible = false
-                        war_ocurred = false
-                        WAR_counter = -1
-                        if (battle == -1) {
-//                            for (i in 0..WAR_opponent_counter) {
-//                                opponent_pile.add(WAR_pile.get(i))
-//                                opponent_pile.add(WAR_pile.get(i))
-////                                cards_for_player.removeAt(i)
-////                                cards_for_opponent.removeAt(i)
-//                            }
-                            opponent_pile.addAll(WAR_pile)
-                        }
-                        else if (battle == 1) {
-//                            for (i in 0..WAR_player_counter) {
-//                                player_pile.add(WAR_pile.get(i))
-//                                player_pile.add(WAR_pile.get(i))
-////                                cards_for_player.removeAt(i)
-////                                cards_for_opponent.removeAt(i)
-//                            }
-                            player_pile.addAll(WAR_pile)
-                        }
-                        WAR_pile.clear()
-                        player_deck_counter = 0
-                        opponent_deck_counter = 0
-
-                    }
-                }
-            }
             else {
-                // cardText.setText(battle.toString())
+                if (cards_for_player.size == 0) {
+                    cards_for_player.addAll(player_pile)
+                    player_pile.clear()
+                }
+                if (cards_for_opponent.size == 0) {
+                    cards_for_opponent.addAll(opponent_pile)
+                    opponent_pile.clear()
+                }
+
+                var current_player_card = cards_for_player.get(0)
+                var current_opponent_card = cards_for_opponent.get(0)
+                player_card.isVisible = true
+                opponent_card.isVisible = true
+                var battle = cardOutcome(current_player_card, current_opponent_card)
+                cardText.setText(battle.toString())
+                if (battle == 0) {
+                    war_ocurred = true
+                }
+
+                else if (battle == -1 || battle == 1) {
+                    if (war_ocurred == true) {
+                        // nothing happens
+                    }
+                    else if (war_ocurred == false) {
+                        showCard(current_player_card, player_card)
+                        showCard(current_opponent_card, opponent_card)
+                        if (battle == -1) {
+                            opponent_pile.add(current_player_card)
+                            opponent_pile.add(current_opponent_card)
+                            cards_for_player.removeAt(0)
+                            cards_for_opponent.removeAt(0)
+                        }
+
+                        else if (battle == 1) {
+                            player_pile.add(current_player_card)
+                            player_pile.add(current_opponent_card)
+                            cards_for_player.removeAt(0)
+                            cards_for_opponent.removeAt(0)
+                        }
+                    }
+                }
+                if (war_ocurred == true) {
+
+                    if (WAR_counter == -1) {
+                        WAR_counter += 1
+                        showCard(current_player_card, player_card)
+                        showCard(current_opponent_card, opponent_card)
+                        WAR_pile.add(current_player_card)
+                        WAR_pile.add(current_opponent_card)
+                        cards_for_player.removeAt(0)
+                        cards_for_opponent.removeAt(0)
+
+                    }
+
+                    else if (WAR_counter == 0) {
+                        player_war_card_1.isVisible = true
+                        opponent_war_card_1.isVisible = true
+                        showCard(current_player_card, player_war_card_1)
+                        showCard(current_opponent_card, opponent_war_card_1)
+                        player_war_card_1.bringToFront()
+                        opponent_war_card_1.bringToFront()
+                        WAR_counter += 1
+                        WAR_pile.add(current_player_card)
+                        WAR_pile.add(current_opponent_card)
+                        cards_for_player.removeAt(0)
+                        cards_for_opponent.removeAt(0)
+                    }
+
+                    else if (WAR_counter == 1) {
+                        player_war_card_2.isVisible = true
+                        opponent_war_card_2.isVisible = true
+                        showCard(current_player_card, player_war_card_2)
+                        showCard(current_opponent_card, opponent_war_card_2)
+                        player_war_card_2.bringToFront()
+                        opponent_war_card_2.bringToFront()
+                        WAR_counter += 1
+                        WAR_pile.add(current_player_card)
+                        WAR_pile.add(current_opponent_card)
+                        cards_for_player.removeAt(0)
+                        cards_for_opponent.removeAt(0)
+                    }
+
+                    else if (WAR_counter == 2) {
+                        player_war_card_3.isVisible = true
+                        opponent_war_card_3.isVisible = true
+                        showCard(current_player_card, player_war_card_3)
+                        showCard(current_opponent_card, opponent_war_card_3)
+                        player_war_card_3.bringToFront()
+                        opponent_war_card_3.bringToFront()
+                        WAR_counter += 1
+                        WAR_pile.add(current_player_card)
+                        WAR_pile.add(current_opponent_card)
+                        cards_for_player.removeAt(0)
+                        cards_for_opponent.removeAt(0)
+                    }
+
+                    else if (WAR_counter == 3) {
+                        player_war_card_4.isVisible = true
+                        opponent_war_card_4.isVisible = true
+                        player_war_card_4.bringToFront()
+                        opponent_war_card_4.bringToFront()
+                        showCard(current_player_card, player_war_card_4)
+                        showCard(current_opponent_card, opponent_war_card_4)
+                        WAR_counter += 1
+                        WAR_pile.add(current_player_card)
+                        WAR_pile.add(current_opponent_card)
+                        cards_for_player.removeAt(0)
+                        cards_for_opponent.removeAt(0)
+                    }
+                    else if (WAR_counter == 4) {
+                        if (battle == 0) {
+                            WAR_counter = -1
+                            war_ocurred = true
+                            showCard(current_player_card, player_card)
+                            showCard(current_opponent_card, opponent_card)
+                        }
+                        else {
+                            showCard(current_player_card, player_card)
+                            showCard(current_opponent_card, opponent_card)
+                            player_war_card_1.isVisible = false
+                            player_war_card_2.isVisible = false
+                            player_war_card_3.isVisible = false
+                            player_war_card_4.isVisible = false
+
+                            opponent_war_card_1.isVisible = false
+                            opponent_war_card_2.isVisible = false
+                            opponent_war_card_3.isVisible = false
+                            opponent_war_card_4.isVisible = false
+                            war_ocurred = false
+                            WAR_counter = -1
+                            if (battle == -1) {
+                                opponent_pile.addAll(WAR_pile)
+                            }
+                            else if (battle == 1) {
+                                player_pile.addAll(WAR_pile)
+                            }
+                            WAR_pile.clear()
+
+                        }
+                    }
+                }
+                if (cards_for_player.size == 0 && player_pile.size == 0) {
+                    player_game_over = true
+                }
+                else if (cards_for_opponent.size == 0 && opponent_pile.size == 0) {
+                    opponent_game_over = true
+                }
             }
+
         }
 
     }
