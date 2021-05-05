@@ -101,6 +101,10 @@ class GameActivity : AppCompatActivity() {
     var half_of_a_full_deck = 0 // this should be 26 after the cards are added
     var player_deck_counter = 0
     var opponent_deck_counter = 0
+    var WAR_counter = -1
+    var WAR_player_counter = 0
+    var WAR_opponent_counter = 0
+    var war_ocurred = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,11 +112,28 @@ class GameActivity : AppCompatActivity() {
 
         val player_deck: ImageView = findViewById(R.id.player_deck)
         val player_card: ImageView = findViewById(R.id.player_card)
+        val player_war_card_1: ImageView = findViewById(R.id.player_war_card_1)
+        val player_war_card_2: ImageView = findViewById(R.id.player_war_card_2)
+        val player_war_card_3: ImageView = findViewById(R.id.player_war_card_3)
+        val player_war_card_4: ImageView = findViewById(R.id.player_war_card_4)
         val opponent_deck: ImageView = findViewById(R.id.opponent_deck)
         val opponent_card: ImageView = findViewById(R.id.opponent_card)
+        val opponent_war_card_1: ImageView = findViewById(R.id.opponent_war_card_1)
+        val opponent_war_card_2: ImageView = findViewById(R.id.opponent_war_card_2)
+        val opponent_war_card_3: ImageView = findViewById(R.id.opponent_war_card_3)
+        val opponent_war_card_4: ImageView = findViewById(R.id.opponent_war_card_4)
 
         player_card.isVisible = false
+        player_war_card_1.isVisible = false
+        player_war_card_2.isVisible = false
+        player_war_card_3.isVisible = false
+        player_war_card_4.isVisible = false
         opponent_card.isVisible = false
+        opponent_war_card_1.isVisible = false
+        opponent_war_card_2.isVisible = false
+        opponent_war_card_3.isVisible = false
+        opponent_war_card_4.isVisible = false
+
 
         // add cards
         // clubs
@@ -187,6 +208,7 @@ class GameActivity : AppCompatActivity() {
         }
 
         val cardText: TextView = findViewById(R.id.card_text)
+
         player_deck.setOnClickListener {
             // cards.shuffle()
             if (player_deck_counter == cards_for_player.size) {
@@ -201,10 +223,90 @@ class GameActivity : AppCompatActivity() {
             opponent_deck_counter += 1
             player_card.isVisible = true
             opponent_card.isVisible = true
-            showCard(current_player_card, player_card)
-            showCard(current_opponent_card, opponent_card)
+            // showCard(current_player_card, player_card)
+            // showCard(current_opponent_card, opponent_card)
+            cardText.setText(current_player_card.toString())
             var battle = cardOutcome(current_player_card, current_opponent_card)
-            cardText.setText(battle.toString())
+            if (battle == 0) {
+                war_ocurred = true
+            }
+
+            else if (battle == -1 || battle == 1) {
+                if (war_ocurred == true) {
+                    // nothing happens
+                }
+                else if (war_ocurred == false) {
+                    showCard(current_player_card, player_card)
+                    showCard(current_opponent_card, opponent_card)
+                }
+            }
+            if (war_ocurred == true) {
+                WAR_player_counter = player_deck_counter
+                WAR_opponent_counter = opponent_deck_counter
+
+                if (WAR_counter == -1) {
+                    WAR_counter += 1
+                    showCard(current_player_card, player_card)
+                    showCard(current_opponent_card, opponent_card)
+                }
+
+                else if (WAR_counter == 0) {
+                    player_war_card_1.isVisible = true
+                    opponent_war_card_1.isVisible = true
+                    player_war_card_1.bringToFront()
+                    opponent_war_card_1.bringToFront()
+                    WAR_counter += 1
+                }
+
+                else if (WAR_counter == 1) {
+                    player_war_card_2.isVisible = true
+                    opponent_war_card_2.isVisible = true
+                    player_war_card_2.bringToFront()
+                    opponent_war_card_2.bringToFront()
+                    WAR_counter += 1
+                }
+
+                else if (WAR_counter == 2) {
+                    player_war_card_3.isVisible = true
+                    opponent_war_card_3.isVisible = true
+                    player_war_card_3.bringToFront()
+                    opponent_war_card_3.bringToFront()
+                    WAR_counter += 1
+                }
+
+                else if (WAR_counter == 3) {
+                    player_war_card_4.isVisible = true
+                    opponent_war_card_4.isVisible = true
+                    player_war_card_4.bringToFront()
+                    opponent_war_card_4.bringToFront()
+                    showCard(current_player_card, player_war_card_4)
+                    showCard(current_opponent_card, opponent_war_card_4)
+                    WAR_counter += 1
+                }
+                else if (WAR_counter == 4) {
+                    if (battle == 0) {
+                        WAR_counter = -1
+                    }
+                    else {
+                        showCard(current_player_card, player_card)
+                        showCard(current_opponent_card, opponent_card)
+                        player_war_card_1.isVisible = false
+                        player_war_card_2.isVisible = false
+                        player_war_card_3.isVisible = false
+                        player_war_card_4.isVisible = false
+
+                        opponent_war_card_1.isVisible = false
+                        opponent_war_card_2.isVisible = false
+                        opponent_war_card_3.isVisible = false
+                        opponent_war_card_4.isVisible = false
+                        war_ocurred = false
+                        WAR_counter = -1
+                    }
+                }
+            }
+            else {
+                // cardText.setText(battle.toString())
+            }
         }
 
     }

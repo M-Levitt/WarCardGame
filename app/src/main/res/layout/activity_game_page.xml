@@ -21,7 +21,7 @@
         android:id='@+id/player_deck'
         android:contentDescription="@string/player_deck"
         android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:layout_margin="5dp"
         android:src="@drawable/red_back"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +31,7 @@
         android:id='@+id/opponent_deck'
         android:contentDescription="@string/opponent_deck"
         android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:layout_margin="5dp"
         android:src="@drawable/red_back"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
     <ImageView
         android:id="@+id/player_pile"
         android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:layout_margin="5dp"
         android:contentDescription="@string/player_pile"
         android:src="@drawable/red_back"
@@ -50,7 +50,7 @@
     <ImageView
         android:id="@+id/opponent_pile"
         android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:layout_margin="5dp"
         android:contentDescription="@string/opponent_pile"
         android:src="@drawable/red_back"
@@ -60,7 +60,7 @@
     <ImageView
         android:id="@+id/player_card"
         android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:layout_margin="120dp"
         android:contentDescription="@string/player_card"
         android:src="@drawable/red_back"
@@ -68,11 +68,91 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/player_war_card_1"
+        android:layout_width="175dp"
+        android:layout_height="120dp"
+        android:layout_margin="120dp"
+        android:contentDescription="First player WAR card drawn"
+        android:src="@drawable/red_back"
+        app:layout_constraintBottom_toBottomOf="@+id/player_deck"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/player_war_card_2"
+        android:layout_width="225dp"
+        android:layout_height="120dp"
+        android:layout_margin="120dp"
+        android:contentDescription="Second player WAR card drawn"
+        android:src="@drawable/red_back"
+        app:layout_constraintBottom_toBottomOf="@+id/player_deck"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/player_war_card_3"
+        android:layout_width="275dp"
+        android:layout_height="120dp"
+        android:layout_margin="120dp"
+        android:contentDescription="Third player WAR card drawn"
+        android:src="@drawable/red_back"
+        app:layout_constraintBottom_toBottomOf="@+id/player_deck"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/player_war_card_4"
+        android:layout_width="325dp"
+        android:layout_height="120dp"
+        android:layout_margin="120dp"
+        android:contentDescription="Final player WAR card drawn"
+        android:src="@drawable/red_back"
+        app:layout_constraintBottom_toBottomOf="@+id/player_deck"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
         android:id="@+id/opponent_card"
         android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:layout_height="120dp"
         android:layout_margin="120dp"
         android:contentDescription="@string/opponent_card"
+        android:src="@drawable/red_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/opponent_deck" />
+
+    <ImageView
+        android:id="@+id/opponent_war_card_1"
+        android:layout_width="175dp"
+        android:layout_height="120dp"
+        android:layout_margin="120dp"
+        android:contentDescription="First opponent WAR card drawn"
+        android:src="@drawable/red_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/opponent_deck" />
+
+    <ImageView
+        android:id="@+id/opponent_war_card_2"
+        android:layout_width="225dp"
+        android:layout_height="120dp"
+        android:layout_margin="120dp"
+        android:contentDescription="Second opponent WAR card drawn"
+        android:src="@drawable/red_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/opponent_deck" />
+
+    <ImageView
+        android:id="@+id/opponent_war_card_3"
+        android:layout_width="275dp"
+        android:layout_height="120dp"
+        android:layout_margin="120dp"
+        android:contentDescription="Third opponent WAR card drawn"
+        android:src="@drawable/red_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/opponent_deck" />
+
+    <ImageView
+        android:id="@+id/opponent_war_card_4"
+        android:layout_width="325dp"
+        android:layout_height="120dp"
+        android:layout_margin="120dp"
+        android:contentDescription="Final opponent WAR card drawn"
         android:src="@drawable/red_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/opponent_deck" />
