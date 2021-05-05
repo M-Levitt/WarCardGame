@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             } else if (card1 < card2){
                 player2++
                 player2.text = "Player 2: $player2"
+                // war label commences
             } else {
                 wargame.visibility = View.VISIBLE
         }
