@@ -311,6 +311,8 @@ class GameActivity : AppCompatActivity() {
 
     }
 
+
+
     fun cardOutcome(playerCard: Int, opponentCard: Int): Int {
         val startIndex = 1
         val player_string_card = playerCard.toString()
