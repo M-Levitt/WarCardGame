@@ -261,7 +261,7 @@ class GameActivity : AppCompatActivity() {
                         showCard(current_player_card, player_card)
                         showCard(current_opponent_card, opponent_card)
                         if (battle == -1) {
-                            opponent_pile.add(current_player_card)
+                            player_pile.add(current_player_card)
                             opponent_pile.add(current_opponent_card)
                             cards_for_player.removeAt(0)
                             cards_for_opponent.removeAt(0)
@@ -269,7 +269,7 @@ class GameActivity : AppCompatActivity() {
 
                         else if (battle == 1) {
                             player_pile.add(current_player_card)
-                            player_pile.add(current_opponent_card)
+                            opponent_pile.add(current_opponent_card)
                             cards_for_player.removeAt(0)
                             cards_for_opponent.removeAt(0)
                         }
