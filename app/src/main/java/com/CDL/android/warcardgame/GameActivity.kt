@@ -211,6 +211,10 @@ class GameActivity : AppCompatActivity() {
         }
 
         val cardText: TextView = findViewById(R.id.card_text)
+        val player_cardsText: TextView = findViewById(R.id.player_cards_remaining)
+        val opponent_cardsText: TextView = findViewById(R.id.opponent_cards_remaining)
+        val player_pile_amountText: TextView = findViewById(R.id.player_pile_amount)
+        val opponent_pile_amountText: TextView = findViewById(R.id.opponent_pile_amount)
 
         player_deck.setOnClickListener {
             if (player_game_over == true) {
@@ -378,7 +382,10 @@ class GameActivity : AppCompatActivity() {
                     opponent_game_over = true
                 }
             }
-
+            player_cardsText.setText(cards_for_player.size.toString())
+            opponent_cardsText.setText(cards_for_opponent.size.toString())
+            player_pile_amountText.setText(player_pile.size.toString())
+            opponent_pile_amountText.setText(opponent_pile.size.toString())
         }
 
     }
