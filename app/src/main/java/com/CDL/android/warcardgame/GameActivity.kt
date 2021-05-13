@@ -105,6 +105,7 @@ class GameActivity : AppCompatActivity() {
     var WAR_pile = ArrayList<Int>()
     var half_of_a_full_deck = 0 // this should be 26 after the cards are added
     var WAR_counter = -1
+    var finalCardBattle = -10 // will be used for WAR setting
     var war_ocurred = false
     var player_game_over = false
     var opponent_game_over = false
@@ -253,7 +254,7 @@ class GameActivity : AppCompatActivity() {
                     war_ocurred = true
                 }
 
-                else if (battle == -1 || battle == 1) {
+                if (battle == -1 || battle == 1) {
                     if (war_ocurred == true) {
                         // nothing happens
                     }
@@ -331,6 +332,7 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     else if (WAR_counter == 3) {
+                        finalCardBattle = battle
                         player_war_card_4.isVisible = true
                         opponent_war_card_4.isVisible = true
                         player_war_card_4.bringToFront()
@@ -344,13 +346,13 @@ class GameActivity : AppCompatActivity() {
                         cards_for_opponent.removeAt(0)
                     }
                     else if (WAR_counter == 4) {
-                        if (battle == 0) {
+                        if (finalCardBattle == 0) {
                             WAR_counter = -1
                             war_ocurred = true
                             showCard(current_player_card, player_card)
                             showCard(current_opponent_card, opponent_card)
                         }
-                        else {
+                        if (finalCardBattle == -1 || finalCardBattle == 1) {
                             showCard(current_player_card, player_card)
                             showCard(current_opponent_card, opponent_card)
                             player_war_card_1.isVisible = false
@@ -364,13 +366,27 @@ class GameActivity : AppCompatActivity() {
                             opponent_war_card_4.isVisible = false
                             war_ocurred = false
                             WAR_counter = -1
-                            if (battle == -1) {
+                            if (finalCardBattle == -1) {
                                 opponent_pile.addAll(WAR_pile)
                             }
-                            else if (battle == 1) {
+                            if (finalCardBattle == 1) {
                                 player_pile.addAll(WAR_pile)
                             }
                             WAR_pile.clear()
+
+                            if (battle == -1) {
+                                opponent_pile.add(current_player_card)
+                                opponent_pile.add(current_opponent_card)
+                                cards_for_player.removeAt(0)
+                                cards_for_opponent.removeAt(0)
+                            }
+
+                            else if (battle == 1) {
+                                player_pile.add(current_player_card)
+                                player_pile.add(current_opponent_card)
+                                cards_for_player.removeAt(0)
+                                cards_for_opponent.removeAt(0)
+                            }
 
                         }
                     }
