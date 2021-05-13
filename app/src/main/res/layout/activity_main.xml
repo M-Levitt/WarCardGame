@@ -37,4 +37,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PlayButton"
         app:layout_constraintVertical_bias="0.127" />
+
+    <Button
+        android:id="@+id/Scoreboard"
+        android:layout_width="149dp"
+        android:layout_height="71dp"
+        android:backgroundTint="#FFFFFF"
+        android:onClick="launchScoreboard"
+        android:text="Scoreboard"
+        android:textColor="#350A0A"
+        android:textSize="15sp"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HowToButton"
+        app:layout_constraintVertical_bias="0.296" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

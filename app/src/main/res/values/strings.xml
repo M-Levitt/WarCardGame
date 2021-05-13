@@ -2,6 +2,7 @@
     <string name="app_name">WarCardGame</string>
     <string name="button_play">Play</string>
     <string name="button_how_to">How To Play</string>
+    <string name="button_scoreboard">Scoreboard</string>
     <string name="button_main_menu">Main Menu</string>
     <string name="player_deck">Player\'s deck</string>
     <string name="player_pile">Player\'s won pile of cards</string>
