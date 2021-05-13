@@ -120,24 +120,26 @@ class GameActivity : AppCompatActivity() {
         val player_war_card_2: ImageView = findViewById(R.id.player_war_card_2)
         val player_war_card_3: ImageView = findViewById(R.id.player_war_card_3)
         val player_war_card_4: ImageView = findViewById(R.id.player_war_card_4)
+        val player_pile_imgview: ImageView = findViewById(R.id.player_pile)
         val opponent_deck: ImageView = findViewById(R.id.opponent_deck)
         val opponent_card: ImageView = findViewById(R.id.opponent_card)
         val opponent_war_card_1: ImageView = findViewById(R.id.opponent_war_card_1)
         val opponent_war_card_2: ImageView = findViewById(R.id.opponent_war_card_2)
         val opponent_war_card_3: ImageView = findViewById(R.id.opponent_war_card_3)
         val opponent_war_card_4: ImageView = findViewById(R.id.opponent_war_card_4)
-
+        val opponent_pile_imgview: ImageView = findViewById(R.id.opponent_pile)
         player_card.isVisible = false
         player_war_card_1.isVisible = false
         player_war_card_2.isVisible = false
         player_war_card_3.isVisible = false
         player_war_card_4.isVisible = false
+        player_pile_imgview.isVisible = false
         opponent_card.isVisible = false
         opponent_war_card_1.isVisible = false
         opponent_war_card_2.isVisible = false
         opponent_war_card_3.isVisible = false
         opponent_war_card_4.isVisible = false
-
+        opponent_pile_imgview.isVisible = false
 
 //         add cards
 //         clubs
@@ -402,6 +404,16 @@ class GameActivity : AppCompatActivity() {
             opponent_cardsText.setText(cards_for_opponent.size.toString())
             player_pile_amountText.setText(player_pile.size.toString())
             opponent_pile_amountText.setText(opponent_pile.size.toString())
+
+            if(player_pile.isNotEmpty()){
+                player_pile_imgview.isVisible = true
+            }
+            else{player_pile_imgview.isVisible = false}
+
+            if(opponent_pile.isNotEmpty()){
+                opponent_pile_imgview.isVisible = true
+            }
+            else{opponent_pile_imgview.isVisible = false}
         }
 
     }
