@@ -344,14 +344,6 @@ class GameActivity : AppCompatActivity() {
                         WAR_pile.add(current_opponent_card)
                         cards_for_player.removeAt(0)
                         cards_for_opponent.removeAt(0)
-
-                        if (finalCardBattle == -1) {
-                            opponent_pile.addAll(WAR_pile)
-                        }
-                        if (finalCardBattle == 1) {
-                            player_pile.addAll(WAR_pile)
-                        }
-                        WAR_pile.clear()
                     }
                     else if (WAR_counter == 4) {
                         if (finalCardBattle == 0) {
@@ -374,6 +366,13 @@ class GameActivity : AppCompatActivity() {
                             opponent_war_card_4.isVisible = false
                             war_ocurred = false
                             WAR_counter = -1
+                            if (finalCardBattle == -1) {
+                                opponent_pile.addAll(WAR_pile)
+                            }
+                            if (finalCardBattle == 1) {
+                                player_pile.addAll(WAR_pile)
+                            }
+                            WAR_pile.clear()
 
                             if (battle == -1) {
                                 opponent_pile.add(current_player_card)
