@@ -253,7 +253,6 @@ class GameActivity : AppCompatActivity() {
                 player_card.isVisible = true
                 opponent_card.isVisible = true
                 var battle = cardOutcome(current_player_card, current_opponent_card)
-                cardText.setText(battle.toString())
                 if (battle == 0) {
                     war_ocurred = true
                 }
@@ -266,6 +265,7 @@ class GameActivity : AppCompatActivity() {
                         showCard(current_player_card, player_card)
                         showCard(current_opponent_card, opponent_card)
                         if (battle == -1) {
+                            cardText.setText("You lost this battle.")
                             opponent_pile.add(current_player_card)
                             opponent_pile.add(current_opponent_card)
                             cards_for_player.removeAt(0)
@@ -273,6 +273,7 @@ class GameActivity : AppCompatActivity() {
                         }
 
                         else if (battle == 1) {
+                            cardText.setText("You won this battle.")
                             player_pile.add(current_player_card)
                             player_pile.add(current_opponent_card)
                             cards_for_player.removeAt(0)
@@ -283,6 +284,7 @@ class GameActivity : AppCompatActivity() {
                 if (war_ocurred == true) {
 
                     if (WAR_counter == -1) {
+                        cardText.setText("WAR! Please draw 4 cards from your deck.")
                         WAR_counter += 1
                         showCard(current_player_card, player_card)
                         showCard(current_opponent_card, opponent_card)
@@ -294,6 +296,7 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     else if (WAR_counter == 0) {
+                        cardText.setText("Please draw 3 cards from your deck.")
                         player_war_card_1.isVisible = true
                         opponent_war_card_1.isVisible = true
                         showCard(current_player_card, player_war_card_1)
@@ -308,6 +311,7 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     else if (WAR_counter == 1) {
+                        cardText.setText("Please draw 2 cards from your deck.")
                         player_war_card_2.isVisible = true
                         opponent_war_card_2.isVisible = true
                         showCard(current_player_card, player_war_card_2)
@@ -322,6 +326,7 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     else if (WAR_counter == 2) {
+                        cardText.setText("Please draw 1 card from your deck.")
                         player_war_card_3.isVisible = true
                         opponent_war_card_3.isVisible = true
                         showCard(current_player_card, player_war_card_3)
@@ -348,9 +353,16 @@ class GameActivity : AppCompatActivity() {
                         WAR_pile.add(current_opponent_card)
                         cards_for_player.removeAt(0)
                         cards_for_opponent.removeAt(0)
+                        if (battle == -1) {
+                            cardText.setText("You lost the WAR.")
+                        }
+                        if (battle == 1) {
+                            cardText.setText("You won the WAR.")
+                        }
                     }
                     else if (WAR_counter == 4) {
                         if (finalCardBattle == 0) {
+                            cardText.setText("Another WAR occurred.")
                             WAR_counter = -1
                             war_ocurred = true
                             showCard(current_player_card, player_card)
@@ -379,6 +391,7 @@ class GameActivity : AppCompatActivity() {
                             WAR_pile.clear()
 
                             if (battle == -1) {
+                                cardText.setText("You lost this battle.")
                                 opponent_pile.add(current_player_card)
                                 opponent_pile.add(current_opponent_card)
                                 cards_for_player.removeAt(0)
@@ -386,6 +399,7 @@ class GameActivity : AppCompatActivity() {
                             }
 
                             else if (battle == 1) {
+                                cardText.setText("You won this battle.")
                                 player_pile.add(current_player_card)
                                 player_pile.add(current_opponent_card)
                                 cards_for_player.removeAt(0)
