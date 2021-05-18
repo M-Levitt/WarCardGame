@@ -121,6 +121,7 @@ class GameActivity : AppCompatActivity() {
         val player_war_card_3: ImageView = findViewById(R.id.player_war_card_3)
         val player_war_card_4: ImageView = findViewById(R.id.player_war_card_4)
         val player_pile_imgview: ImageView = findViewById(R.id.player_pile)
+        val player_pile_textview: TextView = findViewById(R.id.player_pile_amount)
         val opponent_deck: ImageView = findViewById(R.id.opponent_deck)
         val opponent_card: ImageView = findViewById(R.id.opponent_card)
         val opponent_war_card_1: ImageView = findViewById(R.id.opponent_war_card_1)
@@ -128,6 +129,7 @@ class GameActivity : AppCompatActivity() {
         val opponent_war_card_3: ImageView = findViewById(R.id.opponent_war_card_3)
         val opponent_war_card_4: ImageView = findViewById(R.id.opponent_war_card_4)
         val opponent_pile_imgview: ImageView = findViewById(R.id.opponent_pile)
+        val opponent_pile_textview: TextView = findViewById(R.id.opponent_pile_amount)
         player_card.isVisible = false
         player_war_card_1.isVisible = false
         player_war_card_2.isVisible = false
@@ -405,15 +407,10 @@ class GameActivity : AppCompatActivity() {
             player_pile_amountText.setText(player_pile.size.toString())
             opponent_pile_amountText.setText(opponent_pile.size.toString())
 
-            if(player_pile.isNotEmpty()){
-                player_pile_imgview.isVisible = true
-            }
-            else{player_pile_imgview.isVisible = false}
-
-            if(opponent_pile.isNotEmpty()){
-                opponent_pile_imgview.isVisible = true
-            }
-            else{opponent_pile_imgview.isVisible = false}
+            player_pile_imgview.isVisible = player_pile.isNotEmpty()
+            player_pile_textview.isVisible = player_pile.isNotEmpty()
+            opponent_pile_imgview.isVisible = opponent_pile.isNotEmpty()
+            opponent_pile_textview.isVisible = opponent_pile.isNotEmpty()
         }
 
     }
